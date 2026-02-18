@@ -31,7 +31,7 @@
 
 ## 🌟 Overview
 
-The **MCP Server Builder Platform** is an enterprise-grade, production-ready web application that enables developers to build, configure, and deploy Model Context Protocol (MCP) servers instantly. With an intuitive UI and 12+ pre-built integrations, you can create powerful AI-enhanced applications without writing complex configuration code.
+The **MCP Server Builder Platform** is an enterprise-grade, production-ready web application that enables developers, security professionals, researchers, students, entrepreneurs, and content creators to build, configure, and deploy Model Context Protocol (MCP) servers instantly. With an intuitive UI and 36+ pre-built integrations across multiple professional domains, you can create powerful AI-enhanced applications without writing complex configuration code.
 
 ### What is MCP?
 
@@ -41,7 +41,7 @@ Model Context Protocol (MCP) is an open protocol that enables seamless integrati
 
 ### 🎯 Core Features
 
-- **12+ Pre-built Integrations**: Filesystem, GitHub, PostgreSQL, SQLite, Slack, Google Drive, AWS, Docker, and more
+- **36+ Pre-built Integrations**: Comprehensive tools for developers, security professionals, researchers, students, entrepreneurs, and content creators
 - **One-Click Build**: Generate production-ready MCP server configurations instantly
 - **Visual Server Builder**: Intuitive drag-and-drop interface for selecting and configuring integrations
 - **Multiple Export Formats**: JSON config, Docker, and NPM package formats
@@ -126,6 +126,42 @@ npm run preview
 - **🤖 Puppeteer MCP**: Browser automation and web scraping
 - **🌐 Fetch MCP**: Make HTTP requests to APIs
 - **🧠 Memory MCP**: Store and retrieve conversation context
+
+### Cybersecurity (NEW!)
+- **🔍 OSINT MCP**: Open Source Intelligence gathering and threat intelligence
+- **🛡️ Vulnerability Scanner MCP**: Scan code and dependencies for security vulnerabilities
+- **🔐 Security Audit MCP**: Perform security audits and compliance checks
+- **⚔️ Penetration Testing MCP**: Authorized security testing and vulnerability assessment
+
+### Research (NEW!)
+- **📚 Academic Search MCP**: Search and access academic papers and research databases
+- **📊 Data Analysis MCP**: Statistical analysis and data visualization
+- **📖 Citation Manager MCP**: Manage citations and generate bibliographies
+- **🔬 Research Assistant MCP**: AI-powered research assistant for literature review
+
+### Education (NEW!)
+- **📅 Study Planner MCP**: Plan and track study schedules and academic goals
+- **📝 Note Taking MCP**: Organize and manage academic notes efficiently
+- **🎴 Flashcards MCP**: Create and manage flashcards for effective learning
+- **✍️ Assignment Tracker MCP**: Track assignments, deadlines, and grades
+
+### Business & Entrepreneurship (NEW!)
+- **💼 Business Plan Generator MCP**: Generate and manage comprehensive business plans
+- **📈 Market Research MCP**: Conduct market research and competitive analysis
+- **💰 Financial Analysis MCP**: Financial modeling, forecasting, and analysis tools
+- **🎯 Pitch Deck Builder MCP**: Create compelling investor pitch decks
+
+### Small Business (NEW!)
+- **🧾 Invoice Generator MCP**: Create and manage professional invoices
+- **👥 Customer Management MCP**: Manage customer relationships and interactions
+- **📦 Inventory Tracker MCP**: Track and manage product inventory
+- **📆 Appointment Scheduler MCP**: Schedule and manage appointments with customers
+
+### Content Creation (NEW!)
+- **📋 Content Planner MCP**: Plan and organize content creation workflows
+- **🔎 SEO Optimizer MCP**: Optimize content for search engines
+- **🎬 Video Script Generator MCP**: Generate video scripts and storyboards
+- **📱 Social Media Manager MCP**: Manage and schedule social media posts
 
 ## 🏗️ Architecture
 
