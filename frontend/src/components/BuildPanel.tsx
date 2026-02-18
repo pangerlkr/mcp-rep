@@ -2,19 +2,41 @@ import React, { useState } from 'react';
 import { X, Download, FileJson, Package, Copy, Check } from 'lucide-react';
 import type { MCPServer } from '../types/mcp';
 import { generateMCPConfig } from '../utils/configGenerator';
+import { getServerConfig } from '../utils/storage';
 
 interface BuildPanelProps {
   selectedServers: MCPServer[];
+  serverConfigs?: Record<string, Record<string, any>>;
   onClose: () => void;
 }
 
-const BuildPanel: React.FC<BuildPanelProps> = ({ selectedServers, onClose }) => {
+const BuildPanel: React.FC<BuildPanelProps> = ({ selectedServers, serverConfigs, onClose }) => {
   const [serverName, setServerName] = useState('my-mcp-server');
   const [serverDescription, setServerDescription] = useState('My custom MCP server');
   const [exportFormat, setExportFormat] = useState<'json' | 'docker' | 'npm'>('json');
   const [copied, setCopied] = useState(false);
 
-  const config = generateMCPConfig(selectedServers, serverName, serverDescription);
+  // Merge server configurations from localStorage and props
+  const getAllServerConfigs = () => {
+    const configs: Record<string, Record<string, any>> = {};
+    selectedServers.forEach(server => {
+      // First try to get from props (in-memory state)
+      let config = serverConfigs?.[server.id];
+      // If not in props, try localStorage
+      if (!config) {
+        const savedConfig = getServerConfig(server.id);
+        if (savedConfig) {
+          config = savedConfig;
+        }
+      }
+      if (config) {
+        configs[server.id] = config;
+      }
+    });
+    return configs;
+  };
+
+  const config = generateMCPConfig(selectedServers, serverName, serverDescription, getAllServerConfigs());
 
   const handleDownload = () => {
     let content: string;

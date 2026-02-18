@@ -1,17 +1,57 @@
-import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, Save, CheckCircle } from 'lucide-react';
 import type { MCPServer } from '../types/mcp';
+import { saveServerConfig, getServerConfig } from '../utils/storage';
 
 interface ConfigModalProps {
   server: MCPServer;
   onClose: () => void;
+  onSave?: (serverId: string, config: Record<string, any>) => void;
 }
 
-const ConfigModal: React.FC<ConfigModalProps> = ({ server, onClose }) => {
+const ConfigModal: React.FC<ConfigModalProps> = ({ server, onClose, onSave }) => {
   const [config, setConfig] = useState<Record<string, any>>({});
+  const [saved, setSaved] = useState(false);
+
+  // Load saved configuration when modal opens
+  useEffect(() => {
+    const savedConfig = getServerConfig(server.id);
+    if (savedConfig) {
+      setConfig(savedConfig);
+    } else {
+      // Initialize with default values
+      const defaultConfig: Record<string, any> = {};
+      server.configuration.configurable.forEach(field => {
+        if (field.default !== undefined) {
+          defaultConfig[field.key] = field.default;
+        }
+      });
+      setConfig(defaultConfig);
+    }
+  }, [server.id, server.configuration.configurable]);
 
   const handleChange = (key: string, value: any) => {
     setConfig(prev => ({ ...prev, [key]: value }));
+    // Reset saved indicator when user makes changes
+    setSaved(false);
+  };
+
+  const handleSave = () => {
+    // Save to localStorage
+    saveServerConfig(server.id, config);
+
+    // Notify parent component if callback provided
+    if (onSave) {
+      onSave(server.id, config);
+    }
+
+    // Show saved indicator
+    setSaved(true);
+
+    // Auto-close after a brief delay to show the saved indicator
+    setTimeout(() => {
+      onClose();
+    }, 1000);
   };
 
   return (
@@ -135,13 +175,23 @@ const ConfigModal: React.FC<ConfigModalProps> = ({ server, onClose }) => {
             Close
           </button>
           <button
-            onClick={() => {
-              // Save configuration logic here
-              onClose();
-            }}
-            className="btn-primary flex-1"
+            onClick={handleSave}
+            disabled={saved}
+            className={`btn-primary flex-1 flex items-center justify-center gap-2 ${
+              saved ? 'bg-green-600 hover:bg-green-600' : ''
+            }`}
           >
-            Save Configuration
+            {saved ? (
+              <>
+                <CheckCircle size={20} />
+                Saved!
+              </>
+            ) : (
+              <>
+                <Save size={20} />
+                Save Configuration
+              </>
+            )}
           </button>
         </div>
       </div>

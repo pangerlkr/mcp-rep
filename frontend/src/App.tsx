@@ -12,6 +12,7 @@ function App() {
   const [selectedServers, setSelectedServers] = useState<MCPServer[]>([]);
   const [showBuildPanel, setShowBuildPanel] = useState(false);
   const [configModalServer, setConfigModalServer] = useState<MCPServer | null>(null);
+  const [serverConfigs, setServerConfigs] = useState<Record<string, Record<string, any>>>({});
 
   const filteredServers = selectedCategory === 'all' 
     ? mcpServers 
@@ -28,6 +29,13 @@ function App() {
 
   const handleConfigure = (server: MCPServer) => {
     setConfigModalServer(server);
+  };
+
+  const handleConfigSave = (serverId: string, config: Record<string, any>) => {
+    setServerConfigs(prev => ({
+      ...prev,
+      [serverId]: config
+    }));
   };
 
   const handleBuild = () => {
@@ -154,6 +162,7 @@ function App() {
       {showBuildPanel && (
         <BuildPanel
           selectedServers={selectedServers}
+          serverConfigs={serverConfigs}
           onClose={() => setShowBuildPanel(false)}
         />
       )}
@@ -163,6 +172,7 @@ function App() {
         <ConfigModal
           server={configModalServer}
           onClose={() => setConfigModalServer(null)}
+          onSave={handleConfigSave}
         />
       )}
 
