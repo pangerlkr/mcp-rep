@@ -1,36 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { X, Save, CheckCircle } from 'lucide-react';
-import type { MCPServer } from '../types/mcp';
+import type { MCPServer, ConfigValue } from '../types/mcp';
 import { saveServerConfig, getServerConfig } from '../utils/storage';
 
 interface ConfigModalProps {
   server: MCPServer;
   onClose: () => void;
-  onSave?: (serverId: string, config: Record<string, any>) => void;
+  onSave?: (serverId: string, config: Record<string, ConfigValue>) => void;
 }
 
 const ConfigModal: React.FC<ConfigModalProps> = ({ server, onClose, onSave }) => {
-  const [config, setConfig] = useState<Record<string, any>>({});
-  const [saved, setSaved] = useState(false);
-
-  // Load saved configuration when modal opens
-  useEffect(() => {
+  const [config, setConfig] = useState<Record<string, ConfigValue>>(() => {
+    // Initialize state with saved config or defaults
     const savedConfig = getServerConfig(server.id);
     if (savedConfig) {
-      setConfig(savedConfig);
-    } else {
-      // Initialize with default values
-      const defaultConfig: Record<string, any> = {};
-      server.configuration.configurable.forEach(field => {
-        if (field.default !== undefined) {
-          defaultConfig[field.key] = field.default;
-        }
-      });
-      setConfig(defaultConfig);
+      return savedConfig;
     }
-  }, [server.id, server.configuration.configurable]);
+    // Initialize with default values
+    const defaultConfig: Record<string, ConfigValue> = {};
+    server.configuration.configurable.forEach(field => {
+      if (field.default !== undefined) {
+        defaultConfig[field.key] = field.default;
+      }
+    });
+    return defaultConfig;
+  });
+  const [saved, setSaved] = useState(false);
 
-  const handleChange = (key: string, value: any) => {
+  // Helper function to get number value from config or default
+  const getNumberValue = (configValue: ConfigValue | undefined, defaultValue: string | number | boolean | undefined): string | number => {
+    if (configValue !== undefined) {
+      return Number(configValue);
+    }
+    if (defaultValue !== undefined) {
+      return Number(defaultValue);
+    }
+    return '';
+  };
+
+  const handleChange = (key: string, value: ConfigValue) => {
     setConfig(prev => ({ ...prev, [key]: value }));
     // Reset saved indicator when user makes changes
     setSaved(false);
@@ -93,26 +101,26 @@ const ConfigModal: React.FC<ConfigModalProps> = ({ server, onClose, onSave }) =>
                 {field.type === 'text' || field.type === 'password' ? (
                   <input
                     type={field.type}
-                    value={config[field.key] || field.default || ''}
+                    value={String(config[field.key] ?? field.default ?? '')}
                     onChange={(e) => handleChange(field.key, e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    placeholder={field.default || ''}
+                    placeholder={typeof field.default === 'string' ? field.default : ''}
                     required={field.required}
                   />
                 ) : field.type === 'number' ? (
                   <input
                     type="number"
-                    value={config[field.key] || field.default || ''}
+                    value={getNumberValue(config[field.key], field.default)}
                     onChange={(e) => handleChange(field.key, parseFloat(e.target.value))}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    placeholder={field.default || ''}
+                    placeholder={typeof field.default === 'number' ? String(field.default) : ''}
                     required={field.required}
                   />
                 ) : field.type === 'boolean' ? (
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="checkbox"
-                      checked={config[field.key] || field.default || false}
+                      checked={Boolean(config[field.key] ?? field.default ?? false)}
                       onChange={(e) => handleChange(field.key, e.target.checked)}
                       className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
                     />
@@ -120,7 +128,7 @@ const ConfigModal: React.FC<ConfigModalProps> = ({ server, onClose, onSave }) =>
                   </label>
                 ) : field.type === 'select' ? (
                   <select
-                    value={config[field.key] || field.default || ''}
+                    value={String(config[field.key] ?? field.default ?? '')}
                     onChange={(e) => handleChange(field.key, e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     required={field.required}
