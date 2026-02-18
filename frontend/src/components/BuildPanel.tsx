@@ -24,7 +24,10 @@ const BuildPanel: React.FC<BuildPanelProps> = ({ selectedServers, serverConfigs,
       let config = serverConfigs?.[server.id];
       // If not in props, try localStorage
       if (!config) {
-        config = getServerConfig(server.id);
+        const savedConfig = getServerConfig(server.id);
+        if (savedConfig) {
+          config = savedConfig;
+        }
       }
       if (config) {
         configs[server.id] = config;
