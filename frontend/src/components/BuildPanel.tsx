@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { X, Download, FileJson, Package, Copy, Check } from 'lucide-react';
-import type { MCPServer } from '../types/mcp';
+import type { MCPServer, ConfigValue } from '../types/mcp';
 import { generateMCPConfig } from '../utils/configGenerator';
 import { getServerConfig } from '../utils/storage';
 
 interface BuildPanelProps {
   selectedServers: MCPServer[];
-  serverConfigs?: Record<string, Record<string, any>>;
+  serverConfigs?: Record<string, Record<string, ConfigValue>>;
   onClose: () => void;
 }
 
@@ -18,7 +18,7 @@ const BuildPanel: React.FC<BuildPanelProps> = ({ selectedServers, serverConfigs,
 
   // Merge server configurations from localStorage and props
   const getAllServerConfigs = () => {
-    const configs: Record<string, Record<string, any>> = {};
+    const configs: Record<string, Record<string, ConfigValue>> = {};
     selectedServers.forEach(server => {
       // First try to get from props (in-memory state)
       let config = serverConfigs?.[server.id];
@@ -237,7 +237,17 @@ const BuildPanel: React.FC<BuildPanelProps> = ({ selectedServers, serverConfigs,
   );
 };
 
-function generateDockerfile(config: any): string {
+function generateDockerfile(config: {
+  name: string;
+  description: string;
+  version: string;
+  mcpServers: Record<string, {
+    command?: string;
+    args?: string[];
+    env: Record<string, string>;
+    transport: string;
+  }>;
+}): string {
   return `FROM node:20-alpine
 
 WORKDIR /app
@@ -245,7 +255,7 @@ WORKDIR /app
 # Install MCP servers
 ${Object.keys(config.mcpServers).map(key => {
   const server = config.mcpServers[key];
-  if (server.command === 'npx') {
+  if (server.command === 'npx' && server.args && server.args[1]) {
     return `RUN npm install -g ${server.args[1]}`;
   }
   return '';

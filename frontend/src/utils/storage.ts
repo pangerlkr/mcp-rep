@@ -2,18 +2,20 @@
  * Storage utility for persisting MCP server configurations
  */
 
+import type { ConfigValue } from '../types/mcp';
+
 const STORAGE_KEY = 'mcp-server-configs';
 
 export interface ServerConfig {
   serverId: string;
-  config: Record<string, any>;
+  config: Record<string, ConfigValue>;
   timestamp: number;
 }
 
 /**
  * Save configuration for a specific MCP server
  */
-export function saveServerConfig(serverId: string, config: Record<string, any>): void {
+export function saveServerConfig(serverId: string, config: Record<string, ConfigValue>): void {
   try {
     const configs = getAllConfigs();
     const existingIndex = configs.findIndex(c => c.serverId === serverId);
@@ -39,7 +41,7 @@ export function saveServerConfig(serverId: string, config: Record<string, any>):
 /**
  * Get configuration for a specific MCP server
  */
-export function getServerConfig(serverId: string): Record<string, any> | null {
+export function getServerConfig(serverId: string): Record<string, ConfigValue> | null {
   try {
     const configs = getAllConfigs();
     const serverConfig = configs.find(c => c.serverId === serverId);

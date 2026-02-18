@@ -5,14 +5,14 @@ import ServerCard from './components/ServerCard';
 import BuildPanel from './components/BuildPanel';
 import ConfigModal from './components/ConfigModal';
 import { mcpServers, categories } from './data/mcpServers';
-import type { MCPServer } from './types/mcp';
+import type { MCPServer, ConfigValue } from './types/mcp';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedServers, setSelectedServers] = useState<MCPServer[]>([]);
   const [showBuildPanel, setShowBuildPanel] = useState(false);
   const [configModalServer, setConfigModalServer] = useState<MCPServer | null>(null);
-  const [serverConfigs, setServerConfigs] = useState<Record<string, Record<string, any>>>({});
+  const [serverConfigs, setServerConfigs] = useState<Record<string, Record<string, ConfigValue>>>({});
 
   const integrationCount = mcpServers.length;
   const categoryCount = categories.length;
@@ -34,7 +34,7 @@ function App() {
     setConfigModalServer(server);
   };
 
-  const handleConfigSave = (serverId: string, config: Record<string, any>) => {
+  const handleConfigSave = (serverId: string, config: Record<string, ConfigValue>) => {
     setServerConfigs(prev => ({
       ...prev,
       [serverId]: config

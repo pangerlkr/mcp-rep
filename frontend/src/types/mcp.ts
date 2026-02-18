@@ -26,7 +26,7 @@ export interface MCPParameter {
   type: 'string' | 'number' | 'boolean' | 'object' | 'array';
   description: string;
   required?: boolean;
-  default?: any;
+  default?: string | number | boolean | object;
 }
 
 export interface MCPResource {
@@ -57,12 +57,15 @@ export interface ConfigurableField {
   description: string;
   required?: boolean;
   options?: string[];
-  default?: any;
+  default?: string | number | boolean;
 }
+
+// Type for configuration values
+export type ConfigValue = string | number | boolean;
 
 export interface BuildConfig {
   selectedServers: MCPServer[];
-  customSettings: Record<string, any>;
+  customSettings: Record<string, ConfigValue>;
   exportFormat: 'json' | 'docker' | 'npm';
   serverName: string;
   serverDescription: string;

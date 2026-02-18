@@ -1,12 +1,22 @@
-import type { MCPServer } from '../types/mcp';
+import type { MCPServer, ConfigValue } from '../types/mcp';
 
 export function generateMCPConfig(
   servers: MCPServer[],
   serverName: string,
   description: string,
-  serverConfigs?: Record<string, Record<string, any>>
+  serverConfigs?: Record<string, Record<string, ConfigValue>>
 ) {
-  const config: any = {
+  const config: {
+    name: string;
+    description: string;
+    version: string;
+    mcpServers: Record<string, {
+      command?: string;
+      args?: string[];
+      env: Record<string, string>;
+      transport: string;
+    }>;
+  } = {
     name: serverName,
     description,
     version: '1.0.0',
@@ -42,7 +52,7 @@ export function generateServerCode(
   servers: MCPServer[],
   serverName: string,
   description: string,
-  serverConfigs?: Record<string, Record<string, any>>
+  serverConfigs?: Record<string, Record<string, ConfigValue>>
 ): string {
   return `#!/usr/bin/env node
 
