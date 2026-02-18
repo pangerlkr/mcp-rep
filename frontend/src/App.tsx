@@ -14,6 +14,9 @@ function App() {
   const [configModalServer, setConfigModalServer] = useState<MCPServer | null>(null);
   const [serverConfigs, setServerConfigs] = useState<Record<string, Record<string, any>>>({});
 
+  const integrationCount = mcpServers.length;
+  const categoryCount = categories.length;
+
   const filteredServers = selectedCategory === 'all' 
     ? mcpServers 
     : mcpServers.filter(s => s.category === selectedCategory);
@@ -60,7 +63,7 @@ function App() {
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
             Create powerful Model Context Protocol servers with our intuitive platform. 
-            Choose from 12+ pre-built integrations and deploy instantly.
+            Choose from {integrationCount}+ pre-built integrations across {categoryCount} categories and deploy instantly.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <button 
@@ -82,7 +85,7 @@ function App() {
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="card text-center">
-              <div className="text-3xl font-bold text-primary-600 mb-2">12+</div>
+              <div className="text-3xl font-bold text-primary-600 mb-2">{integrationCount}+</div>
               <div className="text-gray-600">MCP Integrations</div>
             </div>
             <div className="card text-center">
