@@ -1,18 +1,21 @@
 {
   "name": "mcp-rep",
   "version": "1.0.0",
-  "description": "",
+  "description": "MCP Server Builder Platform - Build powerful Model Context Protocol servers with just one click",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "cd frontend && npm run dev",
+    "preview": "cd frontend && npm run preview"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pangerlkr/mcp-rep.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["mcp", "model-context-protocol", "ai", "llm", "server-builder", "integrations"],
+  "author": "MCP Server Builder Platform",
+  "license": "MIT",
   "type": "commonjs",
   "bugs": {
     "url": "https://github.com/pangerlkr/mcp-rep/issues"

@@ -10,6 +10,8 @@
 
 **Build powerful Model Context Protocol servers with just one click**
 
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/pangerlkr/mcp-rep)
+
 [Features](#features) • [Quick Start](#quick-start) • [Documentation](#documentation) • [Contributing](#contributing) • [License](#license)
 
 </div>
@@ -264,6 +266,24 @@ npm run lint
 
 ## 🚢 Deployment
 
+### Deploy to Netlify (Recommended)
+
+The easiest way to deploy this application is using Netlify's one-click deployment:
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/pangerlkr/mcp-rep)
+
+#### Manual Netlify Deployment
+
+1. Fork or clone this repository
+2. Connect your repository to Netlify
+3. Netlify will automatically detect the `netlify.toml` configuration
+4. Deploy! The build settings are pre-configured:
+   - **Base directory**: `frontend`
+   - **Build command**: `npm install && npm run build`
+   - **Publish directory**: `dist`
+
+For detailed instructions, see [Netlify Deployment Guide](docs/NETLIFY_DEPLOYMENT.md).
+
 ### Docker Deployment
 
 ```bash
@@ -274,18 +294,26 @@ docker build -t mcp-server-builder .
 docker run -p 3000:80 mcp-server-builder
 ```
 
-### Static Hosting
+### Other Static Hosting Options
 
 The built application is a static site that can be hosted on any static hosting service:
 
-- Vercel
-- Netlify
-- GitHub Pages
-- AWS S3 + CloudFront
-- Azure Static Web Apps
-- Google Cloud Storage
+- **Vercel**: Import from GitHub and deploy
+- **GitHub Pages**: Deploy the `frontend/dist` directory
+- **AWS S3 + CloudFront**: Upload built files to S3
+- **Azure Static Web Apps**: Connect your repository
+- **Google Cloud Storage**: Upload to GCS bucket
 
 Simply deploy the contents of the `frontend/dist` directory.
+
+### Build Locally
+
+```bash
+# Install dependencies and build
+npm run build
+
+# The built files will be in frontend/dist/
+```
 
 ### Environment Variables
 
