@@ -23,6 +23,7 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Quick Start](#quick-start)
+- [How to Use](#how-to-use)
 - [Available MCP Integrations](#available-mcp-integrations)
 - [Architecture](#architecture)
 - [Development](#development)
@@ -71,7 +72,7 @@ Model Context Protocol (MCP) is an open protocol that enables seamless integrati
 
 ### Prerequisites
 
-- **Node.js** 18+ 
+- **Node.js** 18+
 - **npm** or **yarn**
 - Modern web browser
 
@@ -91,6 +92,27 @@ npm run dev
 ```
 
 The application will be available at `http://localhost:5173`
+
+### 📖 How to Use
+
+**NEW!** Check out our comprehensive step-by-step guide: [**How to Use Guide**](docs/HOW_TO_USE.md)
+
+The guide covers:
+- 📝 Selecting and configuring MCP integrations
+- 🔐 Managing API keys and credentials securely
+- 🔨 Building and exporting your MCP server
+- 🚀 Deploying to various platforms
+- 🔧 Troubleshooting and best practices
+
+**Quick Start Tutorial**:
+1. Browse available integrations by category
+2. Select the integrations you need
+3. Click "Configure" to add API keys and settings
+4. Click "Save Configuration" to persist your settings
+5. Click "Build Server" to generate your configuration
+6. Download in your preferred format (JSON, Docker, or NPM)
+
+For detailed instructions, see the [complete guide](docs/HOW_TO_USE.md).
 
 ### Building for Production
 
