@@ -304,7 +304,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 📧 Email: support@example.com
+- 📧 Email: support@pangerlkr.link
 - 💬 Discord: [Join our community](https://discord.gg/example)
 - 🐛 Issues: [GitHub Issues](https://github.com/pangerlkr/mcp-rep/issues)
 - 📖 Documentation: [Full Documentation](https://docs.example.com)
