@@ -255,7 +255,7 @@ WORKDIR /app
 # Install MCP servers
 ${Object.keys(config.mcpServers).map(key => {
   const server = config.mcpServers[key];
-  if (server.command === 'npx' && server.args && server.args[1]) {
+  if (server.command === 'npx' && server.args && server.args.length > 1) {
     return `RUN npm install -g ${server.args[1]}`;
   }
   return '';

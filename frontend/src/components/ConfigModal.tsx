@@ -27,6 +27,17 @@ const ConfigModal: React.FC<ConfigModalProps> = ({ server, onClose, onSave }) =>
   });
   const [saved, setSaved] = useState(false);
 
+  // Helper function to get number value from config or default
+  const getNumberValue = (configValue: ConfigValue | undefined, defaultValue: string | number | boolean | undefined): string | number => {
+    if (configValue !== undefined) {
+      return Number(configValue);
+    }
+    if (defaultValue !== undefined) {
+      return Number(defaultValue);
+    }
+    return '';
+  };
+
   const handleChange = (key: string, value: ConfigValue) => {
     setConfig(prev => ({ ...prev, [key]: value }));
     // Reset saved indicator when user makes changes
@@ -99,7 +110,7 @@ const ConfigModal: React.FC<ConfigModalProps> = ({ server, onClose, onSave }) =>
                 ) : field.type === 'number' ? (
                   <input
                     type="number"
-                    value={config[field.key] !== undefined ? Number(config[field.key]) : (field.default !== undefined ? Number(field.default) : '')}
+                    value={getNumberValue(config[field.key], field.default)}
                     onChange={(e) => handleChange(field.key, parseFloat(e.target.value))}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     placeholder={typeof field.default === 'number' ? String(field.default) : ''}
