@@ -1,0 +1,494 @@
+# Instincts generated from https://github.com/pangerlkr/mcp-rep
+# Generated: 2026-03-07T13:50:19.481Z
+# Version: 2.0
+
+---
+id: mcp-rep-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Commit Length
+
+## Action
+
+Keep commit messages concise (under 50 characters)
+
+## Evidence
+
+- Average commit message length: 41 chars
+- Based on 32 commits
+
+---
+id: mcp-rep-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: mcp-rep-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: mcp-rep-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: mcp-rep-arch-type-based
+trigger: "when adding new code"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Arch Type Based
+
+## Action
+
+Place code in the appropriate type folder (components/, services/, utils/, etc.)
+
+## Evidence
+
+- Type-based module organization detected
+- Folders: 
+
+---
+id: mcp-rep-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: mcp-rep-workflow-feature-development
+trigger: "when implementing a new feature"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Workflow Feature Development
+
+## Action
+
+Follow the feature-development workflow:
+1. Add feature implementation
+2. Add tests for feature
+3. Update documentation
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~10x per month
+- Files: frontend/src/*, frontend/src/components/*, frontend/src/data/*
+
+---
+id: mcp-rep-workflow-react-component-bug-fixing
+trigger: "when doing react component bug fixing"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Workflow React Component Bug Fixing
+
+## Action
+
+Follow the react-component-bug-fixing workflow:
+1. Fix TypeScript compilation errors
+2. Replace 'any' types with proper types
+3. Fix ESLint violations
+4. Update component prop types
+5. Handle null/undefined cases
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: frontend/src/components/BuildPanel.tsx, frontend/src/components/ConfigModal.tsx, frontend/src/App.tsx
+
+---
+id: mcp-rep-workflow-feature-documentation-workflow
+trigger: "when doing feature documentation workflow"
+confidence: 0.65
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Workflow Feature Documentation Workflow
+
+## Action
+
+Follow the feature-documentation-workflow workflow:
+1. Implement core feature functionality
+2. Create detailed documentation in docs/
+3. Update README.md with new instructions
+4. Add configuration examples
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~3x per month
+- Files: README.md, docs/*.md, frontend/src/App.tsx
+
+---
+id: mcp-rep-workflow-mcp-integration-expansion
+trigger: "when doing mcp integration expansion"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Workflow Mcp Integration Expansion
+
+## Action
+
+Follow the mcp-integration-expansion workflow:
+1. Update MCP servers data file
+2. Modify frontend components to handle new servers
+3. Update README with new integration count
+4. Update package dependencies
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: frontend/src/data/mcpServers.ts, README.md, frontend/package-lock.json
+
+---
+id: mcp-rep-workflow-collaborative-pr-workflow
+trigger: "when doing collaborative pr workflow"
+confidence: 0.8
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/mcp-rep
+---
+
+# Mcp Rep Workflow Collaborative Pr Workflow
+
+## Action
+
+Follow the collaborative-pr-workflow workflow:
+1. Create initial plan commit
+2. Implement feature with co-author
+3. Address code review feedback
+4. Merge pull request
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~6x per month
+- Files: varying based on feature, always includes co-author metadata
+
+---
+id: mcp-rep-typescript-naming
+trigger: "When creating new TypeScript files or functions"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Typescript Naming
+
+## Action
+
+Use camelCase for files and functions, PascalCase for classes, SCREAMING_SNAKE_CASE for constants
+
+## Evidence
+
+- Pattern in frontend/src/components/BuildPanel.tsx
+- Pattern in frontend/src/utils/configGenerator.ts
+- Consistent across all TypeScript files
+
+---
+id: mcp-rep-relative-imports
+trigger: "When importing modules in frontend code"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Relative Imports
+
+## Action
+
+Use relative imports for local modules
+
+## Evidence
+
+- Pattern in frontend/src/App.tsx
+- Pattern in frontend/src/components/*.tsx
+
+---
+id: mcp-rep-try-catch-errors
+trigger: "When handling potential errors in TypeScript"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Try Catch Errors
+
+## Action
+
+Use try-catch blocks without custom error classes
+
+## Evidence
+
+- Pattern in frontend/src/utils/storage.ts
+- No custom error classes found in codebase
+
+---
+id: mcp-rep-chore-commits
+trigger: "When making maintenance or sync changes"
+confidence: 0.75
+domain: git
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Chore Commits
+
+## Action
+
+Prefix commit with 'chore:' followed by descriptive message averaging 41 characters
+
+## Evidence
+
+- chore: sync integration metrics with data
+- Average length pattern of 41 characters
+
+---
+id: mcp-rep-merge-pr-format
+trigger: "When merging pull requests"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Merge Pr Format
+
+## Action
+
+Use format 'Merge pull request #N from branch-name'
+
+## Evidence
+
+- Merge pull request #9 from pangerlkr/copilot/add-new-assets
+- Merge pull request #8 from pangerlkr/copilot/fix-infrastructure-components
+
+---
+id: mcp-rep-fix-typescript-errors
+trigger: "When CI fails due to TypeScript compilation errors"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Fix Typescript Errors
+
+## Action
+
+Fix compilation errors, replace 'any' types, handle null/undefined cases, and update prop types
+
+## Evidence
+
+- react-component-bug-fixing workflow frequency 2x/month
+- Files: BuildPanel.tsx, ConfigModal.tsx, App.tsx, types/mcp.ts
+
+---
+id: mcp-rep-feature-with-docs
+trigger: "When implementing a major new feature"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Feature With Docs
+
+## Action
+
+Create feature implementation, add detailed docs/ documentation, update README.md with instructions, add config examples
+
+## Evidence
+
+- feature-documentation-workflow frequency 3x/month
+- Always includes README.md and docs/*.md updates
+
+---
+id: mcp-rep-expand-mcp-servers
+trigger: "When adding new MCP server integrations"
+confidence: 0.8
+domain: workflow
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Expand Mcp Servers
+
+## Action
+
+Update mcpServers.ts data file, modify frontend components, update README integration count, update package dependencies
+
+## Evidence
+
+- mcp-integration-expansion workflow frequency 2x/month
+- Always touches frontend/src/data/mcpServers.ts
+
+---
+id: mcp-rep-collaborative-pr
+trigger: "When working on features through pull requests"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Collaborative Pr
+
+## Action
+
+Create initial plan commit, implement with co-author, address review feedback, then merge PR
+
+## Evidence
+
+- collaborative-pr-workflow frequency 6x/month
+- Multiple co-authored commits in history
+
+---
+id: mcp-rep-frontend-structure
+trigger: "When organizing frontend code"
+confidence: 0.9
+domain: architecture
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Frontend Structure
+
+## Action
+
+Use type-based module organization with components/, utils/, data/, and types/ folders
+
+## Evidence
+
+- frontend/src/components/*
+- frontend/src/utils/*
+- frontend/src/data/*
+- frontend/src/types/*
+
+---
+id: mcp-rep-config-files-root
+trigger: "When adding configuration files"
+confidence: 0.85
+domain: architecture
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Config Files Root
+
+## Action
+
+Place config files at appropriate levels: root for Docker/CI, frontend/ for frontend-specific configs
+
+## Evidence
+
+- Dockerfile at root
+- frontend/package.json
+- frontend/vite.config.ts
+- .github/workflows/ci.yml
+
+---
+id: mcp-rep-separate-test-location
+trigger: "When writing tests"
+confidence: 0.7
+domain: testing
+source: repo-analysis
+source_repo: pangerlkr/mcp-rep
+---
+
+# Mcp Rep Separate Test Location
+
+## Action
+
+Place tests in separate location from source code
+
+## Evidence
+
+- testLocation: separate in architecture patterns
+- No co-located .test.ts files found
+
